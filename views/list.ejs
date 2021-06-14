@@ -1,27 +1,28 @@
 <%- include("header") -%>
 
-  <div class="box" id="heading">
-    <h1><%= listTitle %></h1>
-  </div>
+<div class="box" id="heading">
+  <h1><%= listTitle %></h1>
+</div>
 
-  <div class="box">
-    <ul>
+<div class="box">
 
-      <%  for(let i = 0; i<newListItems.length; i++){ %>
+  <%  newListItems.forEach(function(item){ %>
+  <form class="" action="/delete" method="post">
+    <div class="item">
+      <input type="checkbox" name="checkbox" value="<%=item._id%>" onchange="this.form.submit()">
+      <p><%= item.name %></p>
+    </div>
+    <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+  </form>
 
-      <div class="item">
-        <input type="checkbox" name="" value="">
-        <p><%= newListItems[i] %></p>
-      </div>
+  <%  }) %>
 
-      <%  } %>
-      <form class="item" action="/" method="post">
+  <form class="item" action="/" method="post">
 
-        <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
-        <button type="submit" name="list" value=<%= listTitle %>>+</button>
+    <input type="text" name="newItem" placeholder="New Item" autocomplete="on">
+    <button type="submit" name="list" value="<%= listTitle %>">+</button>
 
-      </form>
-    </ul>
+  </form>
 
-  </div>
-  <%- include("footer") -%>
+</div>
+<%- include("footer") -%>
