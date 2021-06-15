@@ -133,24 +133,16 @@ app.post("/delete", function(req, res){
 
 });
 
-
-app.post("/", function(req, res){
-  let item = req.body.newItem;
-  if(req.body.list === "Work"){
-    workItems.push(item);
-    res.redirect("/work");
-  }else{
-    items.push(item);
-    res.redirect("/");
-  }
-
+app.get("/about", function(req, res){
+  res.render("about");
 });
 
 
-// app.get("/work", function(req, res){
-//   res.render("list", {listTitle: "Work List", newListItems: workItems});
-// });
+let port = process.env.PORT;
+if(port == null || port == "") {
+  port = 3000;
+}
 
-app.listen(8080, function() {
-  console.log("Server is started on port 8080");
+app.listen(port || 3000, function() {
+  console.log("Server is started succesfully");
 });
